@@ -14,12 +14,13 @@ router.post('/', function(request, response){
 	};
 	console.log(user);
 	userModel.validate(user, function(status){
-		if(status==1){
+		console.log(status);
+		if(status==0){
 			response.cookie('username', user.username);
 			response.cookie('userstatus', status);
 			response.redirect('/admin');
 		}
-		if(status==2){
+		else if(status==2){
 			response.cookie('username', user.username);
 			response.cookie('userstatus', status);
 			response.redirect('/customer');
