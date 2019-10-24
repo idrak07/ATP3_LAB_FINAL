@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Home page</title>
+</head>
+<body>
+	<h1>Edit User</h1>
+	<a href="/components/userhome">Back</a> | 
+	<a href="/logout">logout</a>
+	
+	
+	<table border="1">
+		<% for(var i=0; i<results.length; i++) {%>
+		 <tr>
+		    <td>
+		       <a href="/components/laptop/<%= results[i].cid %>"><%= results[i].cname %></a>
+		    </td>
+		</tr>
+		<% } %>
+	</table>
+
+
+</body>
+</html>

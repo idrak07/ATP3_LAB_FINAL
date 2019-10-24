@@ -2,12 +2,25 @@ var db = require('./db')
 
 module.exports = {
 
-	getById: function(id, callback){
+	getByType: function(type, callback){
 
-			var sql = "select * from user where id=?";
-			db.getResults(sql, [id], function(result){
+			var sql = "SELECT * FROM `comp` WHERE `ctype`= ?";
+			db.getResults(sql, [type], function(result){
 				if(result.length > 0 ){
-					callback(result[0]);
+					console.log(result);
+					callback(result);
+				}else{
+					callback([]);
+				}
+			});
+	},
+	getByid: function(type, callback){
+
+			var sql = "SELECT * FROM `comp` WHERE `cid`= ?";
+			db.getResults(sql, [type], function(result){
+				if(result.length > 0 ){
+					console.log(result);
+					callback(result);
 				}else{
 					callback([]);
 				}
@@ -39,10 +52,19 @@ module.exports = {
 			}
 		});	
 	},
-	insert: function(user, callback){
+	insertadmin: function(user, callback){
 
-		var sql ="insert into user values('', ?, ?)";
-		db.execute(sql, [user.username, user.password], function(status){
+		var sql ="insert into user values('', ?, ? , ?)";
+		var flag=0;
+		db.execute(sql, [user.username, user.password ,flag], function(status){
+			callback(status);
+		});
+	},
+	insertcustomer: function(user, callback){
+
+		var sql ="insert into user values('', ?, ? , ?)";
+		var flag=2;
+		db.execute(sql, [user.username, user.password ,flag], function(status){
 			callback(status);
 		});
 	},

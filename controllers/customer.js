@@ -6,8 +6,15 @@ var router = express.Router();
 router.get('/', function(request, response){
 
 		if(request.cookies['username'] != null){
-			response.render('customer/index');		
-		}else{
+			if(request.cookies['userstatus'] ==2){
+				response.render('customer/index');	
+			}	
+			else
+			{
+				response.redirect('/logout');
+			}
+		}
+		else{
 			response.redirect('/logout');
 		}	
 });

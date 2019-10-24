@@ -45,6 +45,7 @@ module.exports = {
 		});
 	},
 	execute : function(sql, params, callback){
+		console.log(sql);
 		getConnection(function (connection){
 
 			if(params != null){

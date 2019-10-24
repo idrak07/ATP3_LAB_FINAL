@@ -5,9 +5,10 @@ var expSession = require('express-session');
 var cookieParser = require('cookie-parser');
 var ejs = require('ejs');
 var login = require('./controllers/login');
+var registration = require('./controllers/registration');
 var admin = require('./controllers/admin');
 var customer = require('./controllers/customer');
-
+var components = require('./controllers/components');
 var user = require('./controllers/user');
 var logout = require('./controllers/logout');
 var app = express();
@@ -22,7 +23,9 @@ app.use(expSession({secret:'my top secret value', saveUninitialized:true, resave
 app.use(cookieParser());
 app.use('/abc', express.static('xyz'))
 app.use('/login', login);
+app.use('/registration',registration);
 app.use('/admin', admin);
+app.use('/components', components);
 app.use('/customer', customer);
 app.use('/user', user);
 app.use('/logout', logout);
